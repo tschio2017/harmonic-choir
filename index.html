@@ -15,77 +15,50 @@
       color: #333;
     }
 
-    /* =================================================
-       導覽列（桌機維持 sticky）
-       ================================================= */
+    /* ===== 導覽列 ===== */
     nav {
       position: sticky;
       top: 0;
-      z-index: 1000;
+      z-index: 100;
       background: #5b4b8a;
       box-shadow: 0 4px 10px rgba(0,0,0,0.12);
     }
-
     nav .nav-container {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 14px 20px;
     }
-
     nav ul {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 20px;
       list-style: none;
       margin: 0;
       padding: 0;
     }
-
     nav a {
       color: #fff;
       text-decoration: none;
       font-weight: 600;
-      font-size: 1.2rem;
+      font-size: 1.1rem; /* 字體加大 */
     }
-
     nav a:hover {
       text-decoration: underline;
       color: #e6e0ff;
     }
-
     .hamburger {
       display: none;
       flex-direction: column;
       gap: 5px;
       cursor: pointer;
     }
-
     .hamburger div {
       width: 25px;
       height: 3px;
       background: white;
     }
-
-    /* =================================================
-       🔴【修改 1】手機版：導覽列浮動 + 內容補高度
-       ================================================= */
-    @media (max-width: 768px) {
-
-      /* 🔴 手機版導覽列改為 fixed（浮動） */
-      nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 2000;
-      }
-
-      /* 🔴 補空間，避免內容被導覽列蓋住 */
-      body {
-        padding-top: 72px;
-      }
-
+    @media(max-width:768px){
       nav ul {
         display: none;
         flex-direction: column;
@@ -93,26 +66,16 @@
         text-align: center;
         gap: 12px;
         background: #5b4b8a;
-        padding-bottom: 12px;
       }
-
       nav ul.active {
         display: flex;
       }
-
       .hamburger {
         display: flex;
       }
-
-      /* 🔴 手機 Hero 再往下推，視覺更舒適 */
-      header {
-        padding-top: 160px;
-      }
     }
 
-    /* =================================================
-       Hero 區塊
-       ================================================= */
+    /* ===== Hero ===== */
     header {
       position: relative;
       background:
@@ -124,18 +87,17 @@
       padding: 120px 20px;
       text-align: center;
     }
-
     header h1 {
       font-size: 3rem;
       margin-bottom: 10px;
+      letter-spacing: 1px;
     }
-
     header p {
       font-size: 1.2rem;
       max-width: 720px;
       margin: 0 auto;
+      opacity: 0.95;
     }
-
     .music-control {
       margin-top: 20px;
       cursor: pointer;
@@ -145,32 +107,28 @@
       border-radius: 20px;
       color: white;
       font-weight: 600;
+      font-size: 1rem;
+    }
+    .music-control:hover {
+      background: rgba(255,255,255,0.4);
     }
 
-    /* =================================================
-       內容區塊
-       ================================================= */
+    /* ===== 區塊通用 ===== */
     section {
       padding: 90px 20px;
       max-width: 1000px;
       margin: auto;
-
-      /* 🔴【修改 2】避免錨點被導覽列蓋住 */
-      scroll-margin-top: 90px;
     }
-
     h2 {
       font-size: 2rem;
       margin-bottom: 26px;
       color: #4a3c74;
     }
-
     .two-col {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 32px;
     }
-
     .card {
       background: white;
       padding: 34px;
@@ -180,125 +138,230 @@
       transform: translateY(40px);
       transition: 0.6s ease-out;
     }
-
     .card.show {
       opacity: 1;
       transform: translateY(0);
     }
 
-    .bg-light {
-      background: #f3f0fa;
+    /* ===== 照片 Gallery Grid ===== */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .gallery-grid img {
+      width: 100%;
+      border-radius: 12px;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+    .gallery-grid img:hover {
+      transform: scale(1.05);
     }
 
+    /* ===== 其他 ===== */
+    .list {
+      padding-left: 20px;
+    }
     footer {
       background: #4a3c74;
       color: white;
       text-align: center;
       padding: 60px 20px;
+      font-size: 0.95rem;
+    }
+    .cta {
+      display: inline-block;
+      margin-top: 24px;
+      background: linear-gradient(135deg, #6f5fcf, #9b8ce6);
+      color: white;
+      padding: 14px 34px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 8px 20px rgba(90,70,160,0.35);
+    }
+    .cta:hover {
+      opacity: 0.9;
+    }
+    .bg-light {
+      background: #f3f0fa;
     }
   </style>
 </head>
 
 <body>
 
-<!-- ================= 導覽列 ================= -->
+<!-- ===== 導覽列 ===== -->
 <nav>
   <div class="nav-container">
-    <div class="logo">
-      <a href="#">Harmonic Choir</a>
-    </div>
-
+    <div class="logo"><a href="#" style="color:white; font-size:1.3rem; font-weight:bold;">Harmonic Choir</a></div>
     <div class="hamburger" id="hamburger">
-      <div></div><div></div><div></div>
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
-
     <ul id="nav-links">
       <li><a href="#about">關於</a></li>
-      <li><a href="#vision">願景</a></li>
+      <li><a href="#vision">願景使命</a></li>
       <li><a href="#team">團隊</a></li>
+      <li><a href="#repertoire">曲目</a></li>
+      <li><a href="#practice">練習</a></li>
+      <li><a href="#news">公告</a></li>
+      <li><a href="#events">活動</a></li>
       <li><a href="#gallery">照片</a></li>
-      <li><a href="#knowledge">樂談</a></li>
+      <li><a href="#knowledge">唱歌知識</a></li>
+      <li><a href="#faq">FAQ</a></li>
       <li><a href="#contact">聯絡</a></li>
     </ul>
   </div>
 </nav>
 
-<!-- ================= Hero ================= -->
 <header>
-  <h1>溫哥華 ♫ 音韻合唱團</h1>
-  <p>透過歌聲，我們彼此傾聽、彼此支持</p>
+  <h1>音韻合唱團</h1>
+  <h1 style="font-size:1.8rem; font-weight:400;">Harmonic Choir</h1>
+  <p>透過歌聲，我們彼此傾聽、彼此支持，<br />在和聲中分享溫暖與感動。</p>
   <button class="music-control" id="musicBtn">播放背景音樂 🎵</button>
   <audio id="bgMusic" src="https://raw.githubusercontent.com/tschio2017/harmonic-choir/main/music01.mp3" loop></audio>
+
 </header>
 
-<!-- ================= Sections ================= -->
 <section id="about">
   <h2>關於我們</h2>
   <div class="two-col">
-    <div class="card">成人合唱團，重視音樂與溫度</div>
-    <div class="card">用歌聲連結彼此</div>
+    <div class="card">
+      音韻合唱團是一個以成人團員為主的合唱團，透過合唱建立穩定、溫暖、可長久投入的音樂社群。<br><br>
+      這裡是個充滿歡樂與和諧的舞台，我們以歌會友，用音樂連結彼此，共同創造動人的音符。
+    </div>
+    <div class="card">
+      Harmonic Choir is an adult choir focused on musical quality, human connection, and sustainable artistic growth.<br><br>
+      熱愛歌唱的你，是否想用歌聲觸動心靈、感動人群？歡迎加入我們的行列。
+    </div>
   </div>
 </section>
 
 <section id="vision" class="bg-light">
-  <h2>願景</h2>
-  <div class="card">讓合唱成為生活的一部分</div>
+  <h2>願景・使命・定位</h2>
+  <div class="two-col">
+    <div class="card"><strong>願景</strong><br>讓合唱成為生活中穩定的美好存在。</div>
+    <div class="card"><strong>使命</strong><br>以音樂連結人與人之間的理解與支持。</div>
+    <div class="card"><strong>定位</strong><br>重視音樂深度與人際溫度的成人合唱團。</div>
+  </div>
 </section>
 
 <section id="team">
-  <h2>團隊</h2>
-  <div class="card">團長、指揮、團員</div>
+  <h2>團隊介紹</h2>
+  <div class="two-col">
+    <div class="card"><strong>團長</strong><br>負責團務與方向規劃</div>
+    <div class="card"><strong>指揮</strong><br>音樂訓練與藝術指導</div>
+    <div class="card"><strong>團員</strong><br>來自不同背景、因歌聲相聚</div>
+  </div>
+</section>
+
+<section id="repertoire" class="bg-light">
+  <h2>所唱曲目</h2>
+  <ul class="list">
+    <li>古典合唱作品</li>
+    <li>當代合唱與改編作品</li>
+    <li>適合成人合唱的多元曲風</li>
+  </ul>
+</section>
+
+<section id="practice">
+  <h2>練習時間與地點</h2>
+  <div class="card">
+    練習時間將於近期公告。<br>
+    練習時間：每週五晚7-9
+  </div>
+</section>
+
+<section id="news" class="bg-light">
+  <h2>公告</h2>
+  <div class="card">目前尚無最新公告</div>
+</section>
+
+<section id="events">
+  <h2>歷次活動</h2>
+  <div class="card">音樂會與交流活動紀錄將陸續更新</div>
 </section>
 
 <section id="gallery" class="bg-light">
   <h2>照片</h2>
-  <div class="card">照片集</div>
+  <div class="gallery-grid">
+    <img src="https://picsum.photos/id/1015/300/200" alt="Photo 1">
+    <img src="https://picsum.photos/id/1016/300/200" alt="Photo 2">
+    <img src="https://picsum.photos/id/1025/300/200" alt="Photo 3">
+    <img src="https://picsum.photos/id/1035/300/200" alt="Photo 4">
+    <img src="https://picsum.photos/id/1045/300/200" alt="Photo 5">
+    <img src="https://picsum.photos/id/1055/300/200" alt="Photo 6">
+  </div>
 </section>
 
 <section id="knowledge">
-  <h2>樂談</h2>
-  <div class="card">合唱知識分享</div>
+  <h2>唱歌知識分享</h2>
+  <div class="two-col">
+    <div class="card">呼吸與發聲基礎</div>
+    <div class="card">合唱中的聆聽與融合</div>
+  </div>
+</section>
+
+<section id="faq" class="bg-light">
+  <h2>常見問題</h2>
+  <div class="card">
+    Q：需要合唱經驗嗎？<br>
+    A：不需要，只要願意投入排練。
+  </div>
 </section>
 
 <section id="contact">
   <h2>聯絡我們</h2>
-  <div class="card">info@harmonicchoir.org</div>
+  <div class="card">
+    報名：778-317-5556
+  </div>
+  <a class="cta" href="mailto:info@harmonicchoir.org">Email 聯絡</a>
 </section>
 
 <footer>
-  © Harmonic Choir
+  © Harmonic Choir 音韻合唱團
 </footer>
 
 <script>
-  /* 漢堡選單 */
+  // ===== 漢堡選單 =====
   const hamburger = document.getElementById('hamburger');
   const navLinks = document.getElementById('nav-links');
   hamburger.addEventListener('click', () => {
     navLinks.classList.toggle('active');
   });
 
-  /* Scroll Reveal */
+  // ===== Scroll Reveal 動畫 =====
   const cards = document.querySelectorAll('.card');
   const reveal = () => {
-    const h = window.innerHeight;
-    cards.forEach(c => {
-      if (c.getBoundingClientRect().top < h - 50) {
-        c.classList.add('show');
+    const windowHeight = window.innerHeight;
+    cards.forEach(card => {
+      const elementTop = card.getBoundingClientRect().top;
+      if(elementTop < windowHeight - 50){
+        card.classList.add('show');
       }
     });
   };
   window.addEventListener('scroll', reveal);
   window.addEventListener('load', reveal);
 
-  /* 背景音樂 */
+  // ===== Hero 背景音樂控制 =====
   const musicBtn = document.getElementById('musicBtn');
   const bgMusic = document.getElementById('bgMusic');
   let playing = false;
-  musicBtn.onclick = () => {
-    playing ? bgMusic.pause() : bgMusic.play();
-    musicBtn.textContent = playing ? "播放背景音樂 🎵" : "暫停音樂 ⏸️";
-    playing = !playing;
-  };
+  musicBtn.addEventListener('click', () => {
+    if(!playing){
+      bgMusic.play();
+      musicBtn.textContent = "暫停音樂 ⏸️";
+      playing = true;
+    } else {
+      bgMusic.pause();
+      musicBtn.textContent = "播放背景音樂 🎵";
+      playing = false;
+    }
+  });
 </script>
 
 </body>
